@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useFela } from "react-fela";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { Container, Row, Col } from "react-bootstrap";
 
-export default App;
+import "bootstrap/dist/css/bootstrap-grid.min.css";
+import { section, h2 } from "./styles";
+
+import { PolicyForm } from "./components/PolicyForm";
+
+export const App = () => {
+	const { css } = useFela();
+
+	return (
+		<section className={css(section)}>
+			<Container>
+				<PolicyForm />
+			</Container>
+		</section>
+	);
+};
