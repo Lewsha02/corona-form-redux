@@ -107,7 +107,10 @@ const navMonth = () => ({
 	"> li": {
 		display: "inline-block",
 		marginRight: "60px",
-		color: "grey",
+		fontSizi: '16px',
+		fontFamily: 'Roboto, sans-serif',
+		fontWeight: '300',
+		color: "#9B9B9B",
 		"@media screen and (max-width: 992px)": {
 			marginRight: "40px",
 		},
@@ -133,7 +136,6 @@ const radioLabel = () => ({
 	cursor: "pointer",
 	lineHeight: "26px",
 	display: "inline-block",
-	color: "grey",
 	":before": {
 		content: '""',
 		position: "absolute",
@@ -149,7 +151,7 @@ const radioLabel = () => ({
 		content: '""',
 		width: "15px",
 		height: "15px",
-		background: "lightgray",
+		background: "#E4E4E4",
 		position: "absolute",
 		top: "6.6px",
 		left: "6.6px",

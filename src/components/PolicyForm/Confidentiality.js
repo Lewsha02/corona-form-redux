@@ -68,7 +68,9 @@ const conf = () => ({
 	"> .conf-text": {
 		fontSize: "14px",
 		margin: 0,
-		color: "grey",
+		color: "#757575",
+		fontFamily: 'Roboto, sans-serif',
+		fontWeight: '300',
 		"@media screen and (max-width: 480px)": {
 			fontSize: '12px',
 		},

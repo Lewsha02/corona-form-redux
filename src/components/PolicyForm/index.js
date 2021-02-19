@@ -4,8 +4,16 @@ import { Row, Col } from "react-bootstrap";
 import { IMaskInput } from "react-imask";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+import Select from "react-select";
 
-import { h2, h3, defaultInput, fontColor, button } from "../../styles";
+import {
+	h2,
+	h3,
+	defaultInput,
+	fontColor,
+	button,
+	selectStyles,
+} from "../../styles";
 
 import { MonthMenu } from "./MonthMenu";
 import { Confidentiality } from "./Confidentiality";
@@ -54,6 +62,20 @@ export const PolicyForm = () => {
 		});
 	}
 
+	function handleParentSelect({ value }) {
+		setInputValue({
+			...inputValue,
+			parentGender: value,
+		});
+	}
+
+	function handleChildSelect({ value }) {
+		setInputValue({
+			...inputValue,
+			childGender: value,
+		});
+	}
+
 	function handleSubmitButton() {
 		const { parentName } = inputValue;
 		const { parentDate } = inputValue;
@@ -67,6 +89,14 @@ export const PolicyForm = () => {
 
 		const childDateValue = new Date(childDate);
 		const childAge = new Date().getFullYear() - childDateValue.getFullYear();
+
+		const parentNameArray = parentName && parentName.split(" ");
+		const childNameArray = childName && childName.split(" ");
+
+		const pasportSeria = parentPasport && parentPasport.slice(0, 4);
+		const pasportNum = parentPasport && parentPasport.slice(4);
+
+		console.log(inputValue);
 
 		if (
 			!parentName ||
@@ -84,19 +114,34 @@ export const PolicyForm = () => {
 			dispatch(
 				setFormError("Поставьте галочку напротив политики конфиденциальности!")
 			);
+		} else if (parentPhone.length !== 11) {
+			dispatch(setFormError("Введите коректный номер телефона!"));
+		} else if (parentDate.length !== 10) {
+			dispatch(setFormError("Введите коректную дату рождения!"));
+		} else if (parentPasport.length !== 10) {
+			dispatch(setFormError("Введите корректные паспортные данные!"));
 		} else if (childAge < 5 || childAge > 18) {
 			dispatch(setFormError("Ребенку должно быть от 5 до 18 лет!"));
 		} else {
 			axios
 				.get(
-					`https://kontinent-lobby.com/travel/book.json?key=a000154a364e819d25b043e79d713e2d6ee62244&if[company]=rgslife&if[date_start]=01.10.2021&params[imageType]=white&if[corona2]=${countOfMonths}&ord[tourists][0][firstName]=Ivanova&ord[tourists][0][lastName]=Anna&ord[tourists][0][middleName]=Ivanovna&ord[tourists][0][gender]=F&ord[tourists][0][birthDay]=01.04.2010&ord[buyer][firstName]=Ivanov&ord[buyer][lastName]=Ivan&ord[buyer][middleName]=Ivanovich&ord[buyer][gender]=M&ord[buyer][email]=mmm@mail.ru&ord[buyer][birthDay]=01.04.1990&ord[buyer][passport_type]=1&ord[buyer][passport_ser]=1111&ord[buyer][passport_num]=123456&ord[buyer][phone]=+7(999)123-45-67&marker=site1`
+					`https://kontinent-lobby.com/travel/book.json?key=a000154a364e819d25b043e79d713e2d6ee62244&if[company]=rgslife&if[date_start]=01.10.2021&params[imageType]=white&if[corona2]=${countOfMonths}&ord[tourists][0][firstName]=${childNameArray[0]}&ord[tourists][0][lastName]=${childNameArray[1]}&ord[tourists][0][middleName]=${childNameArray[2]}&ord[tourists][0][gender]=${childGender}&ord[tourists][0][birthDay]=${childDate}&ord[buyer][firstName]=${parentNameArray[0]}&ord[buyer][lastName]=${parentNameArray[1]}&ord[buyer][middleName]=${parentNameArray[2]}&ord[buyer][gender]=${parentGender}&ord[buyer][email]=${parentEmail}&ord[buyer][birthDay]=${parentDate}&ord[buyer][passport_type]=1&ord[buyer][passport_ser]=${pasportSeria}&ord[buyer][passport_num]=${pasportNum}&ord[buyer][phone]=${parentPhone}&marker=site1`
 				)
 				.then(({ data }) => {
-					setSuccess(true);
-					dispatch(setPolicyNumber(data.policy[0]));
+					if (data.success === false) {
+						dispatch(setFormError(data.errmessg));
+					} else {
+						setSuccess(true);
+						dispatch(setPolicyNumber(data.policy[0]));
+					}
 				});
 		}
 	}
+
+	const genderOptions = [
+		{ value: "M", label: "мужской" },
+		{ value: "F", label: "женский" },
+	];
 
 	return (
 		<>
@@ -136,14 +181,21 @@ export const PolicyForm = () => {
 							/>
 						</Col>
 						<Col lg={3} md={6}>
-							<input
+							<Select
+								options={genderOptions}
+								styles={selectStyles}
+								placeholder='Пол'
+								// name="parentGender"
+								onChange={handleParentSelect}
+							/>
+							{/* <input
 								type='text'
 								name='parentGender'
 								className={css(defaultInput)}
 								placeholder='Пол'
 								required
 								onChange={handleTextInput}
-							/>
+							/> */}
 						</Col>
 						<Col lg={3} md={6}>
 							<input
@@ -205,13 +257,12 @@ export const PolicyForm = () => {
 							/>
 						</Col>
 						<Col lg={3} md={6}>
-							<input
-								type='text'
-								name='childGender'
-								className={css(defaultInput)}
+							<Select
+								options={genderOptions}
+								styles={selectStyles}
 								placeholder='Пол'
-								required
-								onChange={handleTextInput}
+								// name="parentGender"
+								onChange={handleChildSelect}
 							/>
 						</Col>
 						<MonthMenu />
@@ -246,15 +297,20 @@ const finalCost = () => ({
 	alignItems: "center",
 	justifyContent: "space-between",
 	backgroundColor: "#e9e9e9",
-	padding: "15px 30px",
+	padding: "20px 30px",
 	borderRadius: "10px",
 	"> h2": {
+		fontSize: '24px',
+		fontFamily: 'Roboto, sans-serif',
+		fontWeight: 'bold',
 		"@media screen and (max-width: 480px)": {
 			fontSize: "20px",
 		},
 	},
 	"> .price": {
-		fontSize: "30px",
+		fontSize: "24px",
+		fontFamily: "Roboto, sans-serif",
+		fontWeight: 'bold',
 		color: fontColor,
 		"@media screen and (max-width: 480px)": {
 			fontSize: "20px",
