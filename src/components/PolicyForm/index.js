@@ -15,8 +15,6 @@ import {
 	selectStyles,
 } from "../../styles";
 
-// https://demo.moneta.ru/assistant.htm?MNT_ID=38630582&MNT_TRANSACTION_ID=order19199191&MNT_CURRENCY_CODE=RUB&MNT_AMOUNT=390.00&MNT_SIGNATURE=8549e4c4cd1f37888a8cb950d3b28f45&MNT_SUCCESS_URL=https://konti.travel&MNT_FAIL_URL=https://konti.travel&MNT_RETURN_URL=https://konti.travel
-
 import { MonthMenu } from "./MonthMenu";
 import { Confidentiality } from "./Confidentiality";
 import { Modal } from "./Modal";
@@ -132,6 +130,7 @@ export const PolicyForm = () => {
 						dispatch(setFormError(data.errmessg));
 					} else {
 						setSuccess(true);
+						console.log(data);
 						dispatch(setPolicyNumber(data.policy[0]));
 					}
 				});
