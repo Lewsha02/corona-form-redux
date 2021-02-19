@@ -15,6 +15,8 @@ import {
 	selectStyles,
 } from "../../styles";
 
+// https://demo.moneta.ru/assistant.htm?MNT_ID=38630582&MNT_TRANSACTION_ID=order19199191&MNT_CURRENCY_CODE=RUB&MNT_AMOUNT=390.00&MNT_SIGNATURE=8549e4c4cd1f37888a8cb950d3b28f45&MNT_SUCCESS_URL=https://konti.travel&MNT_FAIL_URL=https://konti.travel&MNT_RETURN_URL=https://konti.travel
+
 import { MonthMenu } from "./MonthMenu";
 import { Confidentiality } from "./Confidentiality";
 import { Modal } from "./Modal";
@@ -96,8 +98,6 @@ export const PolicyForm = () => {
 		const pasportSeria = parentPasport && parentPasport.slice(0, 4);
 		const pasportNum = parentPasport && parentPasport.slice(4);
 
-		console.log(inputValue);
-
 		if (
 			!parentName ||
 			!parentDate ||
@@ -125,7 +125,7 @@ export const PolicyForm = () => {
 		} else {
 			axios
 				.get(
-					`https://kontinent-lobby.com/travel/book.json?key=a000154a364e819d25b043e79d713e2d6ee62244&if[company]=rgslife&if[date_start]=01.10.2021&params[imageType]=white&if[corona2]=${countOfMonths}&ord[tourists][0][firstName]=${childNameArray[0]}&ord[tourists][0][lastName]=${childNameArray[1]}&ord[tourists][0][middleName]=${childNameArray[2]}&ord[tourists][0][gender]=${childGender}&ord[tourists][0][birthDay]=${childDate}&ord[buyer][firstName]=${parentNameArray[0]}&ord[buyer][lastName]=${parentNameArray[1]}&ord[buyer][middleName]=${parentNameArray[2]}&ord[buyer][gender]=${parentGender}&ord[buyer][email]=${parentEmail}&ord[buyer][birthDay]=${parentDate}&ord[buyer][passport_type]=1&ord[buyer][passport_ser]=${pasportSeria}&ord[buyer][passport_num]=${pasportNum}&ord[buyer][phone]=${parentPhone}&marker=site1`
+					`https://kontinent-lobby.com/travel/book.json?key=a000154a364e819d25b043e79d713e2d6ee62244&if[company]=rgslife&if[date_start]=01.10.2021&params[imageType]=white&if[corona2]=${countOfMonths}&ord[tourists][0][firstName]=${childNameArray[1]}&ord[tourists][0][lastName]=${childNameArray[0]}&ord[tourists][0][middleName]=${childNameArray[2]}&ord[tourists][0][gender]=${childGender}&ord[tourists][0][birthDay]=${childDate}&ord[buyer][firstName]=${parentNameArray[1]}&ord[buyer][lastName]=${parentNameArray[0]}&ord[buyer][middleName]=${parentNameArray[2]}&ord[buyer][gender]=${parentGender}&ord[buyer][email]=${parentEmail}&ord[buyer][birthDay]=${parentDate}&ord[buyer][passport_type]=1&ord[buyer][passport_ser]=${pasportSeria}&ord[buyer][passport_num]=${pasportNum}&ord[buyer][phone]=${parentPhone}&marker=site1`
 				)
 				.then(({ data }) => {
 					if (data.success === false) {
