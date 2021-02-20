@@ -115,10 +115,25 @@ const navMonth = () => ({
 			marginRight: "40px",
 		},
 		"@media screen and (max-width: 768px)": {
-			display: "block",
 			marginTop: "15px",
 		},
 	},
+	"@media screen and (max-width: 768px)": {
+		display: 'flex',
+		flexWrap: 'wrap',
+		margin: '0 auto',
+		justifyContent: 'center',
+		"> li": {
+			flexBasis: '30%'
+		}
+	},
+	"@media screen and (max-width: 480px)": {
+		display: 'flex',
+		"> li": {
+			flex: 1,
+			fontSize: '14px'
+		}
+	}
 });
 
 const radioInput = () => ({
@@ -157,4 +172,15 @@ const radioLabel = () => ({
 		left: "6.6px",
 		borderRadius: "100%",
 	},
+	"@media screen and (max-width: 480px)": {
+		paddingLeft: '30px',
+		":before": {
+			width: "25px",
+			height: '25px',
+		},
+		":after": {
+			width: '11px',
+			height: '11px'
+		}
+	}
 });
