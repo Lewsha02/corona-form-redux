@@ -130,7 +130,8 @@ const navMonth = () => ({
 	"@media screen and (max-width: 480px)": {
 		display: 'flex',
 		"> li": {
-			flex: 1,
+			flexBasis: '25%',
+			flex: '1',
 			fontSize: '14px'
 		}
 	}
