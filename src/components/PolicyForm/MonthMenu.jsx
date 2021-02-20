@@ -62,7 +62,7 @@ export const MonthMenu = () => {
 						type='radio'
 						name='month-radio'
 						className={css(radioInput)}
-						id='month-3'
+						id='month-3' 
 						onChange={handleRadioInput}
 					/>
 					<label className={css(radioLabel)} htmlFor='month-3'>
