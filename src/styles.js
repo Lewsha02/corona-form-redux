@@ -33,15 +33,15 @@ export const defaultInput = () => ({
 	fontSize: "14px",
 	border: "none",
 	borderRadius: "10px",
-	boxShadow: "0px 5px 5px -5px rgba(34, 60, 80, 0.6)",
+	// boxShadow: "0px 5px 5px -5px rgba(34, 60, 80, 0.6)",
+	// "&::-webkit-boxShadow": "0px 5px 5px -5px rgba(34, 60, 80, 0.6)",
+	// "&::--moz-boxShadow": "0px 5px 5px -5px rgba(34, 60, 80, 0.6)",
+	// "&::-webkit-appearance": "none",
+	borderBottom: "1px solid lightgrey",
 	outline: "none",
 	marginBottom: "30px",
 	fontFamily: "Roboto, sans-serif",
 	fontWeight: "300",
-	"&::-webkit-outer-spin-button, &::-webkit-inner-spin-button": {
-		"-webkit-appearance": "none",
-		margin: 0,
-	},
 });
 
 export const button = () => ({
@@ -50,8 +50,8 @@ export const button = () => ({
 	width: "100%",
 	padding: "20px 0",
 	fontSize: "24px",
-	fontFamily: 'Roboto, sans-serif',
-	fontWeight: 'bold',
+	fontFamily: "Roboto, sans-serif",
+	fontWeight: "bold",
 	borderRadius: "10px",
 	color: fontColor,
 	backgroundColor: "#cce903",
@@ -76,21 +76,22 @@ export const selectStyles = {
 			...styles,
 			border: "none",
 			outline: "none",
-			boxShadow: "0px 5px 5px -5px rgba(34, 60, 80, 0.6)",
+			borderBottom: "1px solid lightgrey",
+			// boxShadow: "0px 5px 5px -5px rgba(34, 60, 80, 0.6)",
 			fontSize: "14px",
 			fontFamily: "Roboto, sans-serif",
 			fontWeight: "300",
 			borderRadius: "10px",
-			marginBottom: '10px',
+			marginBottom: "10px",
 			"@media screen and (max-width: 480px)": {
-				marginBottom: '15px',
-			}
+				marginBottom: "15px",
+			},
 		};
 	},
 	placeholder: (styles) => {
 		return {
 			...styles,
-			paddingLeft: '15px',
+			paddingLeft: "15px",
 			fontFamily: "sans-serif",
 		};
 	},

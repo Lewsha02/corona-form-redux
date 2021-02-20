@@ -3,7 +3,7 @@ import { useFela } from 'react-fela';
 
 import { Row, Col } from 'react-bootstrap';
 
-import logoSvg from '../../assets/logo.svg';
+import kontiLogoSvg from '../../assets/konti-logo.svg';
 import phoneSvg from '../../assets/phone.svg';
 
 export const TopLine = () => {
@@ -13,7 +13,7 @@ export const TopLine = () => {
 			<Row className='align-items-center'>
 				<Col lg={3} md={4} xs={12}>
 					<div className={css(logo)}>
-						<img src={logoSvg} alt="logo icon"/>
+						<img src={kontiLogoSvg} alt="logo icon"/>
 					</div>
 				</Col>
 				<Col lg={4} md={6} xs={8}>

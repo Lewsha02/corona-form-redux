@@ -61,6 +61,9 @@ const steps = () => ({
 	fontFamily: 'Roboto, sans-serif',
 	"@media screen and (max-width: 768px)": {
 		marginBottom: '15px'
+	},
+	"@media screen and (max-width: 576px)": {
+		marginTop: '20px'
 	}
 });
 
@@ -77,6 +80,9 @@ const step = () => ({
 		fontSize: "25px",
 		marginRight: "15px",
 	},
+	"> p": {
+		margin: '0',
+	},
 	":before": {
 		content: '""',
 		width: "3px",
@@ -87,10 +93,10 @@ const step = () => ({
 		top: "50%",
 		transform: "translateY(-50%) rotate(30deg)",
 	},
-	"@media screen and (max-width: 992px)": {
+	"@media screen and (max-width: 768px)": {
 		marginBottom: '15px',
 	},
-	"@media screen and (max-width: 480px)": {
+	"@media screen and (max-width: 576px)": {
 		":before": {
 			display: 'none'
 		}

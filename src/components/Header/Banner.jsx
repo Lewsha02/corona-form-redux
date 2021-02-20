@@ -12,7 +12,7 @@ export const Banner = () => {
 
 	return (
 		<Row>
-			<Col lg={9} md={12}>
+			<Col xl={9} lg={12}>
 				<div className={css(banner)}>
 					<Row>
 						<Col lg={7} md={6}>
@@ -58,7 +58,7 @@ export const Banner = () => {
 										<div className='respText'>
 											Инфицирование
 											<span className={css(covid)}>COVID-19</span>:
-											<b>10 000 ₽</b>
+											<b>10 000 <i className={css(toRight)}>₽</i></b>
 										</div>
 									</li>
 									<li>
@@ -69,7 +69,7 @@ export const Banner = () => {
 											Стационар
 											<span className={css(covid)}>COVID-19</span>:
 											<b>
-												28 000 ₽ <span>( макс. выплата )</span>
+												28 000 <i className={css(toRight)}>₽</i> <span>( макс. выплата )</span>
 											</b>
 										</div>
 									</li>
@@ -80,7 +80,7 @@ export const Banner = () => {
 										<div className='respText'>
 											<span className={css(covid)}>COVID-19</span>:
 											<b>
-												500 000 ₽ <span>( макс. выплата )</span>
+												500 000 <i>₽</i> <span>( макс. выплата )</span>
 											</b>
 										</div>
 									</li>
@@ -91,7 +91,7 @@ export const Banner = () => {
 										<div className='respText'>
 											Несчастный случай
 											<b>
-												100 000 ₽ <span>( макс. выплата )</span>
+												100 000 <i>₽</i> <span>( макс. выплата )</span>
 											</b>
 										</div>
 									</li>
@@ -174,14 +174,26 @@ const respList = () => ({
 				display: "block",
 				marginTop: "5px",
 				paddingLeft: "5px",
+				position: 'relative',
 				"> span": {
 					color: "#F0F7F9",
 					fontSize: "12px",
 					fontWeight: "300",
+					marginLeft: '25px'
 				},
+				"> i": {
+					fontStyle: 'normal',
+				},
+				"@media screen and (max-width: 480px)": {
+					paddingLeft: '0'
+				}
 			},
 		},
 	},
+});
+
+const toRight = () => ({
+	marginLeft: '10px'
 });
 
 const covid = () => ({

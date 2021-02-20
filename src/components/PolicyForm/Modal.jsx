@@ -1,26 +1,46 @@
 import React from "react";
 import { useFela } from "react-fela";
+// import { Keyframe } from "fela";
 import { useDispatch } from "react-redux";
 
 import { setFormError } from "../../redux/actions/formError";
 
 import { button } from "../../styles";
+import "./modalLoader.css";
 
-export const Modal = ({ textOfError }) => {
+export const Modal = ({ textOfError, load }) => {
 	const { css } = useFela();
 	const dispatch = useDispatch();
 
 	function handleCloseButton() {
-		dispatch(setFormError(''));
+		dispatch(setFormError(""));
 	}
 
 	return (
 		<div className={css(customModal)}>
 			<div className='modal-content'>
-				<h4 className='h4'>{textOfError}</h4>
-				<button type="button" className={css(button)} onClick={handleCloseButton}>
-					Хорошо!
-				</button>
+				{load ? (
+					<>
+						<h4 className='h4'>Ваща заявка обрабатывается</h4>
+						<div className='lds-ring'>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+						</div>
+					</>
+				) : (
+					<>
+						<h4 className='h4'>{textOfError}</h4>
+						<button
+							type='button'
+							className={css(button)}
+							onClick={handleCloseButton}
+						>
+							Хорошо!
+						</button>
+					</>
+				)}
 			</div>
 		</div>
 	);
@@ -47,16 +67,16 @@ const customModal = () => ({
 		transform: "translate(-50%, -50%)",
 		padding: "20px",
 		"@media screen and (max-width: 480px)": {
-			width: '280px',
-			height: '280px',
-			padding: '15px',
+			width: "280px",
+			height: "280px",
+			padding: "15px",
 		},
 		"> .h4": {
 			fontSize: "24px",
 			textAlign: "center",
 			"@media screen and (max-width: 480px)": {
-				fontSize: '18px'
-			}
+				fontSize: "18px",
+			},
 		},
 		"> button": {
 			textDecoration: "none",

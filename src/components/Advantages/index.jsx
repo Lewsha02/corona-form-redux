@@ -69,10 +69,13 @@ const advItem = () => ({
 
 const advIcon = () => ({
 	width: "64px",
-	height: "64px",
+	textAlign: 'center',
+	"> img": {
+		margin: '0 auto',
+		maxWidth: '100%'
+	},
 	"@media screen and (max-width: 480px)": {
-		width: '50px',
-		height: '50px'
+		maxWidth: '40px',
 	}
 });
 
@@ -83,6 +86,6 @@ const advText = () => ({
 	marginLeft: "30px",
 	fontFamily: 'Roboto, sans-serif',
 	"@media screen and (max-width: 480px)": {
-		fontSize: '20px'
+		fontSize: '18px'
 	}
 });

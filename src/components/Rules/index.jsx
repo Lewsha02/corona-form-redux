@@ -48,7 +48,7 @@ export const Rules = () => {
 							<div className={css(ruleIcon)}>
 								<img src={calendarSvg} alt='calendar icon' />
 							</div>
-							<h4>15-й день после оформления полиса</h4>
+							<h4>15-й день после <br/> оформления полиса</h4>
 							<p>Начало страхового периода</p>
 						</div>
 					</Col>
@@ -57,7 +57,7 @@ export const Rules = () => {
 							<div className={css(ruleIcon)}>
 								<img src={injurySvg} alt='injury icon' />
 							</div>
-							<h4>Несчастный случай</h4>
+							<h4>Несчастный <br/> случай</h4>
 							<p>Страховой случай – любые химико-механические повреждения</p>
 						</div>
 					</Col>
@@ -66,7 +66,7 @@ export const Rules = () => {
 							<div className={css(ruleIcon)}>
 								<img src={yearSvg} alt='year icon' />
 							</div>
-							<h4>От 1 месяца до 1 года</h4>
+							<h4>От 1 месяца <br/> до 1 года</h4>
 							<p>Срок действия страхового полиса</p>
 						</div>
 					</Col>

@@ -29,6 +29,7 @@ export const PolicyForm = () => {
 	const dispatch = useDispatch();
 	const [inputValue, setInputValue] = React.useState({});
 	const [success, setSuccess] = React.useState(false);
+	const [isLoading, setIsLoading] = React.useState(false);
 
 	const textOfError = useSelector(
 		(errorObj) => errorObj.formErrorReducer.textOfError
@@ -122,16 +123,16 @@ export const PolicyForm = () => {
 		} else if (childAge < 5 || childAge > 18) {
 			dispatch(setFormError("Ребенку должно быть от 5 до 18 лет!"));
 		} else {
-			dispatch(setFormError('Заявка отправлена, ожидайте'));
+			setIsLoading(true);
 			axios
 				.get(
 					`https://kontinent-lobby.com/travel/book.json?key=a000154a364e819d25b043e79d713e2d6ee62244&if[company]=rgslife&if[date_start]=01.10.2021&params[imageType]=white&if[corona2]=${countOfMonths}&ord[tourists][0][firstName]=${childNameArray[1]}&ord[tourists][0][lastName]=${childNameArray[0]}&ord[tourists][0][middleName]=${childNameArray[2]}&ord[tourists][0][gender]=${childGender}&ord[tourists][0][birthDay]=${childDate}&ord[buyer][firstName]=${parentNameArray[1]}&ord[buyer][lastName]=${parentNameArray[0]}&ord[buyer][middleName]=${parentNameArray[2]}&ord[buyer][gender]=${parentGender}&ord[buyer][email]=${parentEmail}&ord[buyer][birthDay]=${parentDate}&ord[buyer][passport_type]=1&ord[buyer][passport_ser]=${pasportSeria}&ord[buyer][passport_num]=${pasportNum}&ord[buyer][phone]=${parentPhone}&marker=site1`
 				)
 				.then(({ data }) => {
+					setIsLoading(false);
 					if (data.success === false) {
 						dispatch(setFormError(data.errmessg));
 					} else {
-						dispatch(setFormError(''));
 						setSuccess(true);
 						console.log(data);
 						dispatch(setPolicyNumber(data.policy[0]));
@@ -279,7 +280,7 @@ export const PolicyForm = () => {
 								</button>
 							</Col>
 						</Row>
-						{textOfError ? <Modal textOfError={textOfError} /> : null}
+						{(textOfError || isLoading) ? <Modal textOfError={textOfError} load={isLoading} /> : null}
 					</form>
 				)}
 			</Container>
