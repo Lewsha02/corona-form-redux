@@ -46,9 +46,17 @@ const customModal = () => ({
 		left: "50%",
 		transform: "translate(-50%, -50%)",
 		padding: "20px",
+		"@media screen and (max-width: 480px)": {
+			width: '280px',
+			height: '280px',
+			padding: '15px',
+		},
 		"> .h4": {
 			fontSize: "24px",
 			textAlign: "center",
+			"@media screen and (max-width: 480px)": {
+				fontSize: '18px'
+			}
 		},
 		"> button": {
 			textDecoration: "none",

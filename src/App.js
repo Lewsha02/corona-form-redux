@@ -1,21 +1,22 @@
 import React from "react";
-import { useFela } from "react-fela";
 
-import { Container } from "react-bootstrap";
-
-import "bootstrap/dist/css/bootstrap-grid.min.css";
-import { section } from "./styles";
-
+import { Header } from "./components/Header";
 import { PolicyForm } from "./components/PolicyForm";
+import { Advantages } from "./components/Advantages";
+import { Rules } from "./components/Rules";
+import { Questions } from "./components/Questions";
+import { Footer } from "./components/Footer";
+import "bootstrap/dist/css/bootstrap-grid.min.css";
 
 export const App = () => {
-	const { css } = useFela();
-
 	return (
-		<section className={css(section)}>
-			<Container>
-				<PolicyForm />
-			</Container>
-		</section>
+		<>
+			<Header />
+			<Advantages />
+			<Rules />
+			<Questions />
+			<PolicyForm />
+			<Footer />
+		</>
 	);
 };

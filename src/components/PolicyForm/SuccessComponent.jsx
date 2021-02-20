@@ -5,8 +5,6 @@ import { useFela } from "react-fela";
 import { h2, h3, button } from "../../styles";
 import axios from "axios";
 
-// https://demo.moneta.ru/assistant.htm?MNT_ID=38630582&MNT_TRANSACTION_ID=order19199191&MNT_CURRENCY_CODE=RUB&MNT_AMOUNT=390.00&MNT_SIGNATURE=8549e4c4cd1f37888a8cb950d3b28f45&MNT_SUCCESS_URL=https://konti.travel&MNT_FAIL_URL=https://konti.travel&MNT_RETURN_URL=https://konti.travel
-
 export const SuccessComponent = () => {
 	const { css } = useFela();
 	const [payUrl, setPayUrl] = React.useState("");

@@ -81,11 +81,16 @@ export const selectStyles = {
 			fontFamily: "Roboto, sans-serif",
 			fontWeight: "300",
 			borderRadius: "10px",
+			marginBottom: '10px',
+			"@media screen and (max-width: 480px)": {
+				marginBottom: '15px',
+			}
 		};
 	},
 	placeholder: (styles) => {
 		return {
 			...styles,
+			paddingLeft: '15px',
 			fontFamily: "sans-serif",
 		};
 	},
