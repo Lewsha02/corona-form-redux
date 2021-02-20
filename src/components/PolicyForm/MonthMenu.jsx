@@ -12,7 +12,7 @@ export const MonthMenu = () => {
 	const dispatch = useDispatch();
 	const { css } = useFela();
 	const [radioValue, setRadioValue] = React.useState({
-		"month-3": true,
+		"month-1": true,
 	});
 
 	function handleRadioInput({ target }) {
@@ -50,6 +50,7 @@ export const MonthMenu = () => {
 						name='month-radio'
 						className={css(radioInput)}
 						id='month-1'
+						defaultChecked
 						onChange={handleRadioInput}
 					/>
 					<label className={css(radioLabel)} htmlFor='month-1'>
@@ -63,7 +64,6 @@ export const MonthMenu = () => {
 						className={css(radioInput)}
 						id='month-3'
 						onChange={handleRadioInput}
-						defaultChecked
 					/>
 					<label className={css(radioLabel)} htmlFor='month-3'>
 						3 месяца
@@ -130,7 +130,7 @@ const navMonth = () => ({
 	"@media screen and (max-width: 480px)": {
 		display: 'flex',
 		"> li": {
-			flexBasis: '25%',
+			flexBasis: '26%',
 			flex: '1',
 			fontSize: '14px'
 		}
