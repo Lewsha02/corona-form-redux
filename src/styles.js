@@ -45,6 +45,8 @@ export const defaultInput = () => ({
 });
 
 export const button = () => ({
+	display: 'block',
+	textAlign: 'center',
 	outline: "none",
 	border: "none",
 	width: "100%",
@@ -57,9 +59,17 @@ export const button = () => ({
 	backgroundColor: "#cce903",
 	":hover": {
 		backgroundColor: "#b6d104",
+		textDecoration: 'none',
+		color: fontColor
 	},
 	":focus": {
 		backgroundColor: "#d3f304",
+		textDecoration: 'none',
+		color: fontColor
+	},
+	":active": {
+		textDecoration: 'none',
+		color: fontColor
 	},
 	"@media screen and (max-width: 768px)": {
 		marginTop: "15px",

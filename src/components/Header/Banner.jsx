@@ -43,7 +43,7 @@ export const Banner = () => {
 									</div>
 								</Col>
 								<Col lg={5}>
-									<a className={css(bannerButton)}>Купить</a>
+									<a className={css(bannerButton)} href="#formScroll">Купить</a>
 								</Col>
 							</Row>
 						</Col>
@@ -241,6 +241,7 @@ const policyPrice = () => ({
 });
 
 const bannerButton = () => ({
+	cursor: 'pointer',
 	position: "relative",
 	fontSize: "14px",
 	marginTop: "30px",

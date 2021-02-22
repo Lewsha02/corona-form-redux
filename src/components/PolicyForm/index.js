@@ -148,6 +148,7 @@ export const PolicyForm = () => {
 
 	return (
 		<section className={css(section)}>
+			<a name="formScroll"></a>
 			<Container>
 				{success ? (
 					<SuccessComponent />
@@ -271,16 +272,17 @@ export const PolicyForm = () => {
 								</div>
 							</Col>
 							<Col lg={3} md={4}>
-								<button
-									type='button'
+								<a
 									className={css(button)}
 									onClick={handleSubmitButton}
 								>
 									Оформить
-								</button>
+								</a>
 							</Col>
 						</Row>
-						{(textOfError || isLoading) ? <Modal textOfError={textOfError} load={isLoading} /> : null}
+						{textOfError || isLoading ? (
+							<Modal textOfError={textOfError} load={isLoading} />
+						) : null}
 					</form>
 				)}
 			</Container>
