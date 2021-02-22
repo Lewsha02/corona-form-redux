@@ -6,7 +6,7 @@ import { confCheck } from '../../redux/actions/formError';
 
 import { accentColor } from "../../styles";
 
-export const Confidentiality = () => {
+export const Confidentiality = React.memo(() => {
 	const { css } = useFela();
 	const dispatch = useDispatch();
 
@@ -37,7 +37,7 @@ export const Confidentiality = () => {
 			</div>
 		</Col>
 	);
-};
+});
 
 const conf = () => ({
 	marginTop: "50px",

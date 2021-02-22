@@ -8,7 +8,7 @@ import { accentColor } from "../../styles";
 
 import { setFinalPrice, setMonth } from "../../redux/actions/finalPrice";
 
-export const MonthMenu = () => {
+export const MonthMenu = React.memo(() => {
 	const dispatch = useDispatch();
 	const { css } = useFela();
 	const [radioValue, setRadioValue] = React.useState({
@@ -96,7 +96,7 @@ export const MonthMenu = () => {
 			</ul>
 		</Col>
 	);
-};
+});
 
 const navMonth = () => ({
 	listStyleType: "none",
@@ -129,10 +129,10 @@ const navMonth = () => ({
 	},
 	"@media screen and (max-width: 480px)": {
 		display: 'flex',
+		flexWrap: 'wrap',
 		"> li": {
-			flexBasis: '35%',
-			marginRight: '20px',
-			flex: '1',
+			flexBasis: '40%',
+			marginRight: '10px',
 			fontSize: '14px'
 		}
 	}

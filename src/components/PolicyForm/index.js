@@ -24,7 +24,7 @@ import { SuccessComponent } from "./SuccessComponent.jsx";
 import { setFormError } from "../../redux/actions/formError";
 import { setPolicyNumber } from "../../redux/actions/setPolicy";
 
-export const PolicyForm = () => {
+export const PolicyForm = React.memo(() => {
 	const { css } = useFela();
 	const dispatch = useDispatch();
 	const [inputValue, setInputValue] = React.useState({});
@@ -288,7 +288,7 @@ export const PolicyForm = () => {
 			</Container>
 		</section>
 	);
-};
+});
 
 const finalCost = () => ({
 	display: "flex",

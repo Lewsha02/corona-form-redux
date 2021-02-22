@@ -8,7 +8,7 @@ import { setFormError } from "../../redux/actions/formError";
 import { button } from "../../styles";
 import "./modalLoader.css";
 
-export const Modal = ({ textOfError, load }) => {
+export const Modal = React.memo(({ textOfError, load }) => {
 	const { css } = useFela();
 	const dispatch = useDispatch();
 
@@ -44,7 +44,7 @@ export const Modal = ({ textOfError, load }) => {
 			</div>
 		</div>
 	);
-};
+});
 
 const customModal = () => ({
 	position: "fixed",

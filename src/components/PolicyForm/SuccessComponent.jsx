@@ -5,7 +5,7 @@ import { useFela } from "react-fela";
 import { h2, h3, button } from "../../styles";
 import axios from "axios";
 
-export const SuccessComponent = () => {
+export const SuccessComponent = React.memo(() => {
 	const { css } = useFela();
 	const [payUrl, setPayUrl] = React.useState("");
 
@@ -47,7 +47,7 @@ export const SuccessComponent = () => {
 			</a>
 		</>
 	);
-};
+});
 
 const buyBtn = () => ({
 	marginTop: "15px",
