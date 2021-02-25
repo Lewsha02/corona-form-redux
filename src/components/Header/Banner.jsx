@@ -43,7 +43,9 @@ export const Banner = () => {
 									</div>
 								</Col>
 								<Col lg={5}>
-									<a className={css(bannerButton)} href="#formScroll">Купить</a>
+									<a className={css(bannerButton)} href='#formScroll'>
+										<span>Купить</span>
+									</a>
 								</Col>
 							</Row>
 						</Col>
@@ -58,7 +60,9 @@ export const Banner = () => {
 										<div className='respText'>
 											Инфицирование
 											<span className={css(covid)}>COVID-19</span>:
-											<b>10 000 <i className={css(toRight)}>₽</i></b>
+											<b>
+												10 000 <i className={css(toRight)}>₽</i>
+											</b>
 										</div>
 									</li>
 									<li>
@@ -69,7 +73,8 @@ export const Banner = () => {
 											Стационар
 											<span className={css(covid)}>COVID-19</span>:
 											<b>
-												28 000 <i className={css(toRight)}>₽</i> <span>( макс. выплата )</span>
+												28 000 <i className={css(toRight)}>₽</i>{" "}
+												<span>( макс. выплата )</span>
 											</b>
 										</div>
 									</li>
@@ -162,38 +167,38 @@ const respList = () => ({
 		},
 		"> .respText": {
 			color: "#F0F7F9",
-			fontFamily: 'Roboto, sans-serif',
+			fontFamily: "Roboto, sans-serif",
 			"@media screen and (max-width: 480px)": {
 				fontSize: "14px",
 			},
 			"> span": {
 				marginLeft: "3px",
-				fontFamily: 'Roboto, sans-serif',
+				fontFamily: "Roboto, sans-serif",
 			},
 			"> b": {
 				display: "block",
 				marginTop: "5px",
 				paddingLeft: "5px",
-				position: 'relative',
+				position: "relative",
 				"> span": {
 					color: "#F0F7F9",
 					fontSize: "12px",
 					fontWeight: "300",
-					marginLeft: '25px'
+					marginLeft: "25px",
 				},
 				"> i": {
-					fontStyle: 'normal',
+					fontStyle: "normal",
 				},
 				"@media screen and (max-width: 480px)": {
-					paddingLeft: '0'
-				}
+					paddingLeft: "0",
+				},
 			},
 		},
 	},
 });
 
 const toRight = () => ({
-	marginLeft: '10px'
+	marginLeft: "10px",
 });
 
 const covid = () => ({
@@ -241,49 +246,116 @@ const policyPrice = () => ({
 });
 
 const bannerButton = () => ({
-	cursor: 'pointer',
-	position: "relative",
-	fontSize: "14px",
-	marginTop: "30px",
-	padding: "10px 30px",
-	display: "block",
-	color: "#fff",
-	letterSpacing: "2px",
-	fontFamily: "Roboto, sans-serif",
-	borderTop: `4px solid ${accentColor}`,
-	borderBottom: `4px solid ${accentColor}`,
-	textAlign: "center",
+	backgroundColor: "transparent",
+	width: "142px",
+	border: "none !important",
+	borderRadius: "0 !important",
 	textTransform: "uppercase",
+	letterSpacing: "2px",
+	backgroundRepeat: "no-repeat",
+	backgroundSize: "cover",
+	borderTop: "4px solid #ea6846 !important",
+	borderBottom: "4px solid #ea6846 !important",
+	fontWeight: "700",
+	position: "relative",
+	zIndex: "1",
+	display: "inline-block",
+	color: '#fff',
+	textAlign: 'center',
+	padding: '10px 30px',
+	fontSize: '14px',
+	marginTop: '30px',
+	whiteSpace: 'nowrap',
+	textDecoration: 'none',
 	":hover": {
-		color: '#fff',
+		color: "#fff",
 		textDecoration: 'none'
 	},
 	":before": {
 		content: '""',
-		position: "absolute",
-		width: "43px",
-		height: "48px",
-		backgroundImage: `url(${arrowSvg})`,
-		backgroundRepeat: "no-repeat",
-		backgroundPosition: "right center",
-		backgroundSize: "cover",
-		right: "-32px",
-		top: "50%",
-		transform: "translateY(-50%)",
+		position: 'absolute',
+		borderTop: `3px solid ${accentColor}`,
+		bottom: '0',
+		right: '-22px',
+		height: '13px',
+		width: '25px',
+		transform: 'rotate(-60deg)',
 	},
 	":after": {
 		content: '""',
-		position: "absolute",
-		width: "43px",
-		height: "48px",
-		backgroundImage: `url(${arrowSvg})`,
-		backgroundRepeat: "no-repeat",
-		backgroundPosition: "right center",
-		backgroundSize: "cover",
-		left: "-4.5px",
-		top: "50%",
-		transform: "translateY(-50%)",
+		position: 'absolute',
+		borderTop: `3px solid ${accentColor}`,
+		top: '5px',
+		right: '-14px',
+		height: '12px',
+		width: '25px',
+		transform: 'rotate(60deg)'
 	},
+	"> span": {
+		":before": {
+			content: '""',
+			position: 'absolute',
+			borderTop: `3px solid ${accentColor}`,
+			bottom: '-2px',
+			left: '-3px',
+			height: '16px',
+			width: '28px',
+			transform: 'rotate(-60deg)'
+		},
+		":after": {
+			content: '""',
+			position: 'absolute',
+			borderTop: `3px solid ${accentColor}`,
+			top: '5px',
+			left: '-9px',
+			height: '8px',
+			width: '25px',
+			transform: 'rotate(60deg)'
+		}
+	},
+	// cursor: 'pointer',
+	// position: "relative",
+	// fontSize: "14px",
+	// marginTop: "30px",
+	// padding: "10px 30px",
+	// display: "block",
+	// color: "#fff",
+	// letterSpacing: "2px",
+	// fontFamily: "Roboto, sans-serif",
+	// borderTop: `4px solid ${accentColor}`,
+	// borderBottom: `4px solid ${accentColor}`,
+	// textAlign: "center",
+	// textTransform: "uppercase",
+	// ":hover": {
+	// 	color: '#fff',
+	// 	textDecoration: 'none'
+	// },
+	// ":before": {
+	// 	content: '""',
+	// 	position: "absolute",
+	// 	width: "43px",
+	// 	height: "48px",
+	// 	backgroundImage: `url(${arrowSvg})`,
+	// 	backgroundRepeat: "no-repeat",
+	// 	backgroundPosition: "right center",
+	// 	backgroundSize: "cover",
+	// 	right: "-32px",
+	// 	top: "50%",
+	// 	transform: "translateY(-50%)",
+	// },
+	// ":after": {
+	// 	content: '""',
+	// 	position: "absolute",
+	// 	width: "43px",
+	// 	height: "48px",
+	// 	backgroundImage: `url(${arrowSvg})`,
+	// 	backgroundRepeat: "no-repeat",
+	// 	backgroundPosition: "right center",
+	// 	backgroundSize: "cover",
+	// 	left: "-4.5px",
+	// 	top: "50%",
+	// 	transform: "translateY(-50%)",
+	// },
 	"@media screen and (max-width: 992px)": {
 		maxWidth: "150px",
 		margin: "25px auto 0 auto",
