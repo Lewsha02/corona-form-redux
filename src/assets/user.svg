@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 3</title>
+    <g id="Catalog" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-3" transform="translate(1.000000, 1.000000)" stroke="#C6EB00">
+            <circle id="Oval" cx="10" cy="8" r="8"></circle>
+            <path d="M12.4597849,12.4100536 C12.8094756,11.8158851 13.010043,11.1234274 13.010043,10.3841246 C13.010043,8.1749856 11.219182,6.38412459 9.01004303,6.38412459 C8.27215939,6.38412459 7.58094112,6.58392279 6.98753674,6.93237065" id="Oval" transform="translate(9.998790, 9.397089) rotate(-225.000000) translate(-9.998790, -9.397089) "></path>
+            <path d="M20,20 C17,17 14.0142011,16 9.99737882,16 C5.92976992,16 3,17 0,20" id="Oval-Copy-13" stroke-width="1.3"></path>
+        </g>
+    </g>
+</svg>

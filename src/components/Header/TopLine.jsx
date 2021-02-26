@@ -5,6 +5,7 @@ import { Row, Col } from 'react-bootstrap';
 
 import kontiLogoSvg from '../../assets/konti-logo.svg';
 import phoneSvg from '../../assets/phone.svg';
+import userSvg from '../../assets/user.svg';
 
 export const TopLine = () => {
 	const { css } = useFela();
@@ -24,7 +25,7 @@ export const TopLine = () => {
 				</Col>
 				<Col lg={2} md={2} xs={4}>
 					<a href="https://konti.travel/dashboard/" className={css(profile)}>
-						<img src={phoneSvg} alt="profile icon"/>
+						<img src={userSvg} alt="profile icon"/>
 					</a>
 				</Col>
 			</Row>
