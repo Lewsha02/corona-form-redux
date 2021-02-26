@@ -23,9 +23,9 @@ export const TopLine = () => {
 					</div>
 				</Col>
 				<Col lg={2} md={2} xs={4}>
-					<div className={css(profile)}>
+					<a href="https://konti.travel/dashboard/" className={css(profile)}>
 						<img src={phoneSvg} alt="profile icon"/>
-					</div>
+					</a>
 				</Col>
 			</Row>
 	);

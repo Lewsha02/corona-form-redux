@@ -1,8 +1,8 @@
 import React from "react";
 import { useFela } from "react-fela";
 import { Col } from "react-bootstrap";
-import {useDispatch} from 'react-redux';
-import { confCheck } from '../../redux/actions/formError';
+import { useDispatch } from "react-redux";
+import { confCheck } from "../../redux/actions/formError";
 
 import { accentColor } from "../../styles";
 
@@ -10,7 +10,7 @@ export const Confidentiality = React.memo(() => {
 	const { css } = useFela();
 	const dispatch = useDispatch();
 
-	function handleChangeInput({target}) {
+	function handleChangeInput({ target }) {
 		dispatch(confCheck(target.checked));
 	}
 
@@ -18,7 +18,13 @@ export const Confidentiality = React.memo(() => {
 		<Col lg={9} md={12}>
 			<div className={css(conf)}>
 				<div className='conf-check'>
-					<input name="conf-checkbox" id='cbx' type='checkbox' required onChange={handleChangeInput}/>
+					<input
+						name='conf-checkbox'
+						id='cbx'
+						type='checkbox'
+						required
+						onChange={handleChangeInput}
+					/>
 					<label className={css(cbx)} htmlFor='cbx'>
 						<span>
 							<svg width='12px' height='10px' viewBox='0 0 12 10'>
@@ -27,13 +33,15 @@ export const Confidentiality = React.memo(() => {
 						</span>
 					</label>
 				</div>
-				<p className='conf-text'>
-					Нажимая кнопку "Отправить", я даю свое согласие на обработку моих
-					персональных данных и соглашаетесь с политикой конфиденциальности, в
-					соответствии с Федеральным законом от 27.07.2006 года №152-Ф3 "О
-					персональных данных", на условиях и для целей, определенных в Согласии
-					на обработку персональных данных
-				</p>
+				<label htmlFor='cbx'>
+					<p className='conf-text'>
+						Нажимая кнопку "Отправить", я даю свое согласие на обработку моих
+						персональных данных и соглашаетесь с политикой конфиденциальности, в
+						соответствии с Федеральным законом от 27.07.2006 года №152-Ф3 "О
+						персональных данных", на условиях и для целей, определенных в
+						Согласии на обработку персональных данных
+					</p>
+				</label>
 			</div>
 		</Col>
 	);
@@ -69,10 +77,10 @@ const conf = () => ({
 		fontSize: "14px",
 		margin: 0,
 		color: "#757575",
-		fontFamily: 'Roboto, sans-serif',
-		fontWeight: '300',
+		fontFamily: "Roboto, sans-serif",
+		fontWeight: "300",
 		"@media screen and (max-width: 480px)": {
-			fontSize: '12px',
+			fontSize: "12px",
 		},
 	},
 });

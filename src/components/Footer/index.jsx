@@ -22,58 +22,58 @@ export const Footer = () => {
 						<ul className={css(faq)}>
 							<li>
 								<img src={footerInfoSvg} alt='info icon' />
-								<a href='/'>О сервисе</a>
+								<a href='https://konti.travel/about/'>О сервисе</a>
 							</li>
 							<li>
 								<img src={footerMapSvg} alt='map icon' />
-								<a href='/'>Контакты</a>
+								<a href='https://konti.travel/contacts/'>Контакты</a>
 							</li>
 							<li>
 								<img src={footerPartnersSvg} alt='partners icon' />
-								<a href='/'>Партнерам</a>
+								<a href='https://konti.travel/partners/'>Партнерам</a>
 							</li>
 						</ul>
 					</Col>
 					<Col md={4}>
 						<div className={css(footerMenu)}>
-							<h5>Помощь</h5>
+							<h5><a href="https://konti.travel/help/">Помощь</a></h5>
 							<ul>
 								<li>
-									<a href='/'>Специальные предложения</a>
+									<a href='https://konti.travel/help/specialnye-predlozheniya/'>Специальные предложения</a>
 								</li>
 								<li>
-									<a href='/'>Условия страхования</a>
+									<a href='https://konti.travel/help/rules/'>Условия страхования</a>
 								</li>
 								<li>
-									<a href='/'>Антирейтинг</a>
+									<a href='https://konti.travel/help/spravochnaya-informaciya-o-turisticheskoj-strahovk/'>Антирейтинг</a>
 								</li>
 								<li>
-									<a href='/'>Политика конфиденциальности</a>
+									<a href='https://konti.travel/help/politika-konfidencialnosti/'>Политика конфиденциальности</a>
 								</li>
 								<li>
-									<a href='/'>Образцы полисов</a>
+									<a href='https://konti.travel/help/sample/'>Образцы полисов</a>
 								</li>
 								<li>
-									<a href='/'>Как оформить страховой полис?</a>
+									<a href='https://konti.travel/help/kak-oformit-strahovoj-polis/'>Как оформить страховой полис?</a>
 								</li>
 							</ul>
 						</div>
 					</Col>
 					<Col md={4}>
 						<div className={css(footerMenu)}>
-							<h5 className="menuServices">Услуги</h5>
+							<h5 className="menuServices"><a href="https://konti.travel/services/">Услуги</a></h5>
 							<ul>
 								<li>
-									<a href='/'>Туристические места</a>
+									<a href='https://konti.travel/services/turisticheskie-mesta/'>Туристические места</a>
 								</li>
 								<li>
-									<a href='/'>Полезная информация для туристов</a>
+									<a href='https://konti.travel/services/poleznaya-informaciya-dlya-turistov/'>Полезная информация для туристов</a>
 								</li>
 								<li>
-									<a href='/'>Виды страхования</a>
+									<a href='https://konti.travel/services/vidy-strahovaniya/'>Виды страхования</a>
 								</li>
 								<li>
-									<a href='/'>Страховки для туристов по странам</a>
+									<a href='https://konti.travel/services/strahovki-dlya-turistov-po-stranam/'>Страховки для туристов по странам</a>
 								</li>
 							</ul>
 						</div>
@@ -117,6 +117,10 @@ const footerMenu = () => ({
 		fontWeight: "bold",
 		marginBottom: '15px',
 		position: 'relative',
+		"> a": {
+			color: '#fff',
+			textDecoration: 'none'
+		},
 		":before": {
 			content: '""',
 			width: '16px',

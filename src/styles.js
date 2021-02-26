@@ -2,7 +2,7 @@ export const fontColor = "#103847";
 export const accentColor = "#ea6846";
 
 export const section = () => ({
-	padding: "120px 0",
+	padding: "120px 0"
 });
 
 export const h2 = () => ({
@@ -42,6 +42,9 @@ export const defaultInput = () => ({
 	marginBottom: "30px",
 	fontFamily: "Roboto, sans-serif",
 	fontWeight: "300",
+	"&.warning": {
+		borderColor: 'red'
+	}
 });
 
 export const button = () => ({

@@ -19,10 +19,10 @@ export const FooterBottom = () => {
 				<Row className="align-items-center">
 					<Col lg={4}>
 						<div className={css(social)}>
-							<a href='/' className={css(socialIcon)}>
+							<a href='https://www.facebook.com/groups/1016638088385886/' className={css(socialIcon)}>
 								<img src={fbSvg} alt='facebook icon' />
 							</a>
-							<a href='/' className={css(socialIcon)}>
+							<a href='https://vk.com/konti.travel' className={css(socialIcon)}>
 								<img src={vkSvg} alt='vk icon' />
 							</a>
 							<div className='text'>Мы в социальных сетяц</div>

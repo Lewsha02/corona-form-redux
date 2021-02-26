@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { accentColor } from "../../styles";
 
 import { setFinalPrice, setMonth } from "../../redux/actions/finalPrice";
+import { setFormError } from "../../redux/actions/formError";
 
 export const MonthMenu = React.memo(() => {
 	const dispatch = useDispatch();
@@ -27,17 +28,22 @@ export const MonthMenu = React.memo(() => {
 	const countOfMonths = Object.keys(radioValue)[0].slice(6);
 
 	React.useEffect(() => {
-		axios
-			.get(
-				`https://kontinent-lobby.com/travel/fullcalc.json?key=a000154a364e819d25b043e79d713e2d6ee62244&if[date_start]=01.04.2021&if[corona2]=${countOfMonths}&params[imageType]=white&lang=en&if[company]=rgslife`
-			)
+		axios({
+			method: "get",
+			url: `https://kontinent-lobby.com/travel/fullcalc.json?key=a000154a364e819d25b043e79d713e2d6ee62244&if[date_start]=01.04.2021&if[corona2]=${countOfMonths}&params[imageType]=white&lang=en&if[company]=rgslife`,
+			timeout: 2000,
+		})
 			.then(({ data }) => {
 				const price = data.pay_sum.toString();
 				dispatch(setFinalPrice(price));
 				dispatch(setMonth(countOfMonths));
 			})
 			.catch((error) => {
-				console.error(error);
+				if (error.code === 'ECONNABORTED') {
+					dispatch(setFormError('Cервер не отвечает'));
+				} else {
+					throw(error)
+				}
 			});
 	}, [radioValue, countOfMonths]);
 
@@ -62,7 +68,7 @@ export const MonthMenu = React.memo(() => {
 						type='radio'
 						name='month-radio'
 						className={css(radioInput)}
-						id='month-3' 
+						id='month-3'
 						onChange={handleRadioInput}
 					/>
 					<label className={css(radioLabel)} htmlFor='month-3'>
@@ -107,9 +113,9 @@ const navMonth = () => ({
 	"> li": {
 		display: "inline-block",
 		marginRight: "60px",
-		fontSizi: '16px',
-		fontFamily: 'Roboto, sans-serif',
-		fontWeight: '300',
+		fontSizi: "16px",
+		fontFamily: "Roboto, sans-serif",
+		fontWeight: "300",
 		color: "#9B9B9B",
 		"@media screen and (max-width: 992px)": {
 			marginRight: "40px",
@@ -119,23 +125,23 @@ const navMonth = () => ({
 		},
 	},
 	"@media screen and (max-width: 768px)": {
-		display: 'flex',
-		flexWrap: 'wrap',
-		margin: '0 auto',
-		justifyContent: 'center',
+		display: "flex",
+		flexWrap: "wrap",
+		margin: "0 auto",
+		justifyContent: "center",
 		"> li": {
-			flexBasis: '30%'
-		}
+			flexBasis: "30%",
+		},
 	},
 	"@media screen and (max-width: 480px)": {
-		display: 'flex',
-		flexWrap: 'wrap',
+		display: "flex",
+		flexWrap: "wrap",
 		"> li": {
-			flexBasis: '40%',
-			marginRight: '10px',
-			fontSize: '14px'
-		}
-	}
+			flexBasis: "40%",
+			marginRight: "10px",
+			fontSize: "14px",
+		},
+	},
 });
 
 const radioInput = () => ({
@@ -175,14 +181,14 @@ const radioLabel = () => ({
 		borderRadius: "100%",
 	},
 	"@media screen and (max-width: 480px)": {
-		paddingLeft: '30px',
+		paddingLeft: "30px",
 		":before": {
 			width: "25px",
-			height: '25px',
+			height: "25px",
 		},
 		":after": {
-			width: '11px',
-			height: '11px'
-		}
-	}
+			width: "11px",
+			height: "11px",
+		},
+	},
 });

@@ -4,8 +4,8 @@ import { useFela } from "react-fela";
 import { Row, Col } from "react-bootstrap";
 import { h2, accentColor, button } from "../../styles";
 
-import arrowSvg from "../../assets/right-arrow.svg";
 import respSvg from "../../assets/coronavirus.svg";
+import injurySvg from '../../assets/injury.svg';
 
 export const Banner = () => {
 	const { css } = useFela();
@@ -61,7 +61,7 @@ export const Banner = () => {
 											Инфицирование
 											<span className={css(covid)}>COVID-19</span>:
 											<b>
-												10 000 <i className={css(toRight)}>₽</i>
+												<span className={css(toRight)}>10 000</span> ₽
 											</b>
 										</div>
 									</li>
@@ -73,8 +73,8 @@ export const Banner = () => {
 											Стационар
 											<span className={css(covid)}>COVID-19</span>:
 											<b>
-												28 000 <i className={css(toRight)}>₽</i>{" "}
-												<span>( макс. выплата )</span>
+												<span className={css(toRight)}>28 000</span> ₽
+												<span> ( макс. выплата )</span>
 											</b>
 										</div>
 									</li>
@@ -85,18 +85,18 @@ export const Banner = () => {
 										<div className='respText'>
 											<span className={css(covid)}>COVID-19</span>:
 											<b>
-												500 000 <i>₽</i> <span>( макс. выплата )</span>
+												500 000 ₽ <span> ( макс. выплата )</span>
 											</b>
 										</div>
 									</li>
 									<li>
 										<div className='respIcon'>
-											<img src={respSvg} alt='corona Icon' />
+											<img src={injurySvg} alt='corona Icon' />
 										</div>
 										<div className='respText'>
 											Несчастный случай
 											<b>
-												100 000 <i>₽</i> <span>( макс. выплата )</span>
+												100 000 ₽ <span> ( макс. выплата )</span>
 											</b>
 										</div>
 									</li>
@@ -160,6 +160,9 @@ const respList = () => ({
 			width: "36px",
 			height: "36px",
 			marginRight: "20px",
+			"> img": {
+				maxWidth: '100%'
+			},
 			"@media screen and (max-width: 480px)": {
 				width: "30px",
 				height: "30px",
@@ -184,7 +187,6 @@ const respList = () => ({
 					color: "#F0F7F9",
 					fontSize: "12px",
 					fontWeight: "300",
-					marginLeft: "25px",
 				},
 				"> i": {
 					fontStyle: "normal",
@@ -199,6 +201,8 @@ const respList = () => ({
 
 const toRight = () => ({
 	marginLeft: "10px",
+	fontSize: '16px !important',
+	fontWeight: 'bold !important'
 });
 
 const covid = () => ({
@@ -313,49 +317,6 @@ const bannerButton = () => ({
 			transform: 'rotate(60deg)'
 		}
 	},
-	// cursor: 'pointer',
-	// position: "relative",
-	// fontSize: "14px",
-	// marginTop: "30px",
-	// padding: "10px 30px",
-	// display: "block",
-	// color: "#fff",
-	// letterSpacing: "2px",
-	// fontFamily: "Roboto, sans-serif",
-	// borderTop: `4px solid ${accentColor}`,
-	// borderBottom: `4px solid ${accentColor}`,
-	// textAlign: "center",
-	// textTransform: "uppercase",
-	// ":hover": {
-	// 	color: '#fff',
-	// 	textDecoration: 'none'
-	// },
-	// ":before": {
-	// 	content: '""',
-	// 	position: "absolute",
-	// 	width: "43px",
-	// 	height: "48px",
-	// 	backgroundImage: `url(${arrowSvg})`,
-	// 	backgroundRepeat: "no-repeat",
-	// 	backgroundPosition: "right center",
-	// 	backgroundSize: "cover",
-	// 	right: "-32px",
-	// 	top: "50%",
-	// 	transform: "translateY(-50%)",
-	// },
-	// ":after": {
-	// 	content: '""',
-	// 	position: "absolute",
-	// 	width: "43px",
-	// 	height: "48px",
-	// 	backgroundImage: `url(${arrowSvg})`,
-	// 	backgroundRepeat: "no-repeat",
-	// 	backgroundPosition: "right center",
-	// 	backgroundSize: "cover",
-	// 	left: "-4.5px",
-	// 	top: "50%",
-	// 	transform: "translateY(-50%)",
-	// },
 	"@media screen and (max-width: 992px)": {
 		maxWidth: "150px",
 		margin: "25px auto 0 auto",

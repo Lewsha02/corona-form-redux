@@ -39,11 +39,11 @@ export const Steps = () => {
 							<ul>
 								<li>
 									<img src={pdfIcon} alt='pdfIcon' />
-									<a href='/'>Образцы полисов</a>
+									<a href='https://konti.travel/help/sample/'>Образцы полисов</a>
 								</li>
 								<li>
 									<img src={pdfIcon} alt='pdfIcon' />
-									<a href='/'>Образцы полисов</a>
+									<a href='https://konti.travel/help/rules/'>Образцы полисов</a>
 								</li>
 							</ul>
 						</div>

@@ -18,11 +18,11 @@ import {
 
 import { MonthMenu } from "./MonthMenu.jsx";
 import { Confidentiality } from "./Confidentiality.jsx";
-import { Modal } from "./Modal.jsx";
 import { SuccessComponent } from "./SuccessComponent.jsx";
 
-import { setFormError } from "../../redux/actions/formError";
 import { setPolicyNumber } from "../../redux/actions/setPolicy";
+
+import { setFormError } from "../../redux/actions/formError";
 
 export const PolicyForm = React.memo(() => {
 	const { css } = useFela();
@@ -109,35 +109,107 @@ export const PolicyForm = React.memo(() => {
 			!childDate ||
 			!childGender
 		) {
-			dispatch(setFormError("Заполните все данные формы!"));
+			setFormError("Заполните форму!");
 		} else if (!confCheck) {
-			dispatch(
-				setFormError("Поставьте галочку напротив политики конфиденциальности!")
-			);
+			setFormError("Поставьте галочку напротив политики конфиденциальности!");
 		} else if (parentPhone.length !== 11) {
-			dispatch(setFormError("Введите коректный номер телефона!"));
+			setFormError("Введите коректный номер телефона!");
 		} else if (parentDate.length !== 10) {
-			dispatch(setFormError("Введите коректную дату рождения!"));
+			setFormError("Введите коректную дату рождения!");
 		} else if (parentPasport.length !== 10) {
-			dispatch(setFormError("Введите корректные паспортные данные!"));
+			setFormError("Введите корректные паспортные данные!");
 		} else if (childAge < 5 || childAge > 18) {
-			dispatch(setFormError("Ребенку должно быть от 5 до 18 лет!"));
+			setFormError("Ребенку должно быть от 5 до 18 лет!");
 		} else {
 			setIsLoading(true);
-			axios
-				.get(
-					`https://kontinent-lobby.com/travel/book.json?key=a000154a364e819d25b043e79d713e2d6ee62244&if[company]=rgslife&if[date_start]=01.10.2021&params[imageType]=white&if[corona2]=${countOfMonths}&ord[tourists][0][firstName]=${childNameArray[1]}&ord[tourists][0][lastName]=${childNameArray[0]}&ord[tourists][0][middleName]=${childNameArray[2]}&ord[tourists][0][gender]=${childGender}&ord[tourists][0][birthDay]=${childDate}&ord[buyer][firstName]=${parentNameArray[1]}&ord[buyer][lastName]=${parentNameArray[0]}&ord[buyer][middleName]=${parentNameArray[2]}&ord[buyer][gender]=${parentGender}&ord[buyer][email]=${parentEmail}&ord[buyer][birthDay]=${parentDate}&ord[buyer][passport_type]=1&ord[buyer][passport_ser]=${pasportSeria}&ord[buyer][passport_num]=${pasportNum}&ord[buyer][phone]=${parentPhone}&marker=site1`
-				)
+			axios({
+				method: "get",
+				url: `https://kontinent-lobby.com/travel/book.json?key=a000154a364e819d25b043e79d713e2d6ee62244&if[company]=rgslife&if[date_start]=01.10.2021&params[imageType]=white&if[corona2]=${countOfMonths}&ord[tourists][0][firstName]=${childNameArray[1]}&ord[tourists][0][lastName]=${childNameArray[0]}&ord[tourists][0][middleName]=${childNameArray[2]}&ord[tourists][0][gender]=${childGender}&ord[tourists][0][birthDay]=${childDate}&ord[buyer][firstName]=${parentNameArray[1]}&ord[buyer][lastName]=${parentNameArray[0]}&ord[buyer][middleName]=${parentNameArray[2]}&ord[buyer][gender]=${parentGender}&ord[buyer][email]=${parentEmail}&ord[buyer][birthDay]=${parentDate}&ord[buyer][passport_type]=1&ord[buyer][passport_ser]=${pasportSeria}&ord[buyer][passport_num]=${pasportNum}&ord[buyer][phone]=${parentPhone}&marker=site1`,
+				timeout: 8000,
+			})
 				.then(({ data }) => {
 					setIsLoading(false);
 					if (data.success === false) {
-						dispatch(setFormError(data.errmessg));
+						setFormError(data.errmessg);
 					} else {
 						setSuccess(true);
-						console.log(data);
 						dispatch(setPolicyNumber(data.policy[0]));
 					}
+				})
+				.catch((error) => {
+					if (error.code === "ECONNABORTED") {
+						dispatch(setFormError("Cервер не отвечает"));
+					} else {
+						throw error;
+					}
 				});
+		}
+	}
+
+	function handleInputWarning({ target }) {
+		const nextEl = target.nextElementSibling;
+
+		function addClasses(input, span) {
+			input.classList.add("warning");
+			span.classList.add("active");
+		}
+
+		function removeClasses(input, span) {
+			input.classList.remove("warning");
+			span.classList.remove("active");
+		}
+
+		if (target.name === "parentName") {
+			if (!target.value) {
+				addClasses(target, nextEl);
+			} else {
+				removeClasses(target, nextEl);
+			}
+		}
+
+		if (target.name === "parentDate") {
+			const userDate = new Date(target.value);
+			const userAge = new Date().getFullYear() - userDate.getFullYear();
+			if (userAge < 18 || target.value.length !== 10) {
+				addClasses(target, nextEl);
+			} else {
+				removeClasses(target, nextEl);
+			}
+		}
+
+		if (target.name === "parentPasport") {
+			if (target.value.length !== 10) {
+				addClasses(target, nextEl);
+			} else {
+				removeClasses(target, nextEl);
+			}
+		}
+
+		if (target.name === "parentPhone") {
+			if (target.value.length !== 16) {
+				addClasses(target, nextEl);
+			} else {
+				removeClasses(target, nextEl);
+			}
+		}
+
+		if (target.name === "childName") {
+			if (!target.value) {
+				addClasses(target, nextEl);
+			} else {
+				removeClasses(target, nextEl);
+			}
+		}
+
+		if (target.name === "childDate") {
+			const childDate = new Date(target.value);
+			const childAge = new Date().getFullYear() - childDate.getFullYear();
+
+			if (childAge < 5 || childAge > 18 || target.value.length !== 10) {
+				addClasses(target, nextEl);
+			} else {
+				removeClasses(target, nextEl);
+			}
 		}
 	}
 
@@ -148,15 +220,22 @@ export const PolicyForm = React.memo(() => {
 
 	return (
 		<section className={css(section)}>
-			<a name="formScroll"></a>
+			<a name='formScroll'></a>
 			<Container>
 				{success ? (
 					<SuccessComponent />
 				) : (
 					<form>
 						<Row>
-							<Col>
-								<h2 className={css(h2)}>Оформление полиса</h2>
+							<Col lg={12}>
+								<h2 className={css(h2, formHeader)}>Оформление полиса</h2>
+							</Col>
+							<Col lg={12}>
+								{textOfError ? (
+									<div className='alert alert-danger' role='alert'>
+										{textOfError}
+									</div>
+								) : null}
 							</Col>
 						</Row>
 						<h3 className={css(h3)}>Данные страхователя</h3>
@@ -168,8 +247,10 @@ export const PolicyForm = React.memo(() => {
 									className={css(defaultInput)}
 									placeholder='Фамилия Имя Отчество'
 									required
+									onBlur={handleInputWarning}
 									onChange={handleTextInput}
 								/>
+								<span className={css(inputWarning)}>Введите ФИО</span>
 							</Col>
 							<Col lg={3} md={6}>
 								<IMaskInput
@@ -180,10 +261,13 @@ export const PolicyForm = React.memo(() => {
 									unmask={true}
 									onAccept={(value, mask) => handleMaskInput(value, mask)}
 									name='parentDate'
-									required
+									onBlur={handleInputWarning}
 									placeholder='Дата рождения'
 									className={css(defaultInput)}
 								/>
+								<span className={css(inputWarning)}>
+									Вам должно быть больше 18 лет
+								</span>
 							</Col>
 							<Col lg={3} md={6}>
 								<Select
@@ -201,8 +285,12 @@ export const PolicyForm = React.memo(() => {
 									name='parentPasport'
 									required
 									placeholder='Серия номер паспорта'
+									onBlur={handleInputWarning}
 									className={css(defaultInput)}
 								/>
+								<span className={css(inputWarning)}>
+									Введите корректные паспортные данные
+								</span>
 							</Col>
 							<Col lg={3} md={6}>
 								<IMaskInput
@@ -212,8 +300,12 @@ export const PolicyForm = React.memo(() => {
 									name='parentPhone'
 									required
 									placeholder='Телефон'
+									onBlur={handleInputWarning}
 									className={css(defaultInput)}
 								/>
+								<span className={css(inputWarning)}>
+									Введите корректный номер телефона
+								</span>
 							</Col>
 							<Col lg={3} md={6}>
 								<input
@@ -223,7 +315,11 @@ export const PolicyForm = React.memo(() => {
 									placeholder='Email'
 									required
 									onChange={handleTextInput}
+									onBlur={handleInputWarning}
 								/>
+								<span className={css(inputWarning)}>
+									Введите электронный адрес
+								</span>
 							</Col>
 						</Row>
 						<h3 className={css(h3)}>Данные застрахованного</h3>
@@ -236,7 +332,9 @@ export const PolicyForm = React.memo(() => {
 									placeholder='Фамилия Имя Отчество'
 									required
 									onChange={handleTextInput}
+									onBlur={handleInputWarning}
 								/>
+								<span className={css(inputWarning)}>Введите ФИО</span>
 							</Col>
 							<Col lg={3} md={6}>
 								<IMaskInput
@@ -250,16 +348,18 @@ export const PolicyForm = React.memo(() => {
 									required
 									placeholder='Дата рождения'
 									className={css(defaultInput)}
+									onBlur={handleInputWarning}
 								/>
+								<span className={css(inputWarning)}>от 5 до 18 лет</span>
 							</Col>
 							<Col lg={3} md={6}>
 								<Select
 									options={genderOptions}
 									styles={selectStyles}
 									placeholder='Пол'
-									// name="parentGender"
 									onChange={handleChildSelect}
 								/>
+								<span className={css(inputWarning)}>Выберите пол</span>
 							</Col>
 							<MonthMenu />
 							<Confidentiality />
@@ -272,22 +372,35 @@ export const PolicyForm = React.memo(() => {
 								</div>
 							</Col>
 							<Col lg={3} md={4}>
-								<a
-									className={css(button)}
-									onClick={handleSubmitButton}
-								>
+								<a className={css(button)} onClick={handleSubmitButton}>
 									Оформить
 								</a>
 							</Col>
 						</Row>
-						{textOfError || isLoading ? (
+						{/* {textOfError || isLoading ? (
 							<Modal textOfError={textOfError} load={isLoading} />
-						) : null}
+						) : null} */}
 					</form>
 				)}
 			</Container>
 		</section>
 	);
+});
+
+const formHeader = () => ({
+	paddingBottom: "20px",
+});
+
+const inputWarning = () => ({
+	fontSize: "12px",
+	color: "red",
+	position: "absolute",
+	bottom: "13px",
+	left: "30px",
+	opacity: "0",
+	"&.active": {
+		opacity: "1",
+	},
 });
 
 const finalCost = () => ({
